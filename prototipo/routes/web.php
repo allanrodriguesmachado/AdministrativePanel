@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/imoveis', 'propertyController@index');
 
 Route::get('/imoveis/novo', 'propertyController@create');
+Route::post('/imoveis/store', 'propertyController@store');
