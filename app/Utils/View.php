@@ -4,35 +4,27 @@ namespace App\Utils;
 
 class View
 {
-    /**
-     * Retornar o conteudo da view
-     * @param string $view
-     * @return string
-     */
+    private static array $vars = [];
+
+    public static function init($vars = [])
+    {
+        self::$vars = $vars;
+    }
+
     private static function getContentView(string $view): string
     {
         $file = __DIR__ . '/../../resources/view/' . $view . '.html';
         return file_exists($file) ? file_get_contents($file) : '';
     }
 
-    /**
-     * Retorna o conteúdo renderizado da view
-     * @param string $view
-     * @return string
-     */
-    public static function render(string $view, $vars = []): string
+    public static function render(string $view, array $vars = []): string
     {
-        //Chaves dos array de variaveis
+        $vars = array_merge(self::$vars, $vars);
         $keys = array_keys($vars);
-        $keys = array_map(function ($item) {
+        $keys = array_map(static function ($item) {
             return '{{' . $item . '}}';
         }, $keys);
 
-//        echo "<pre>";
-//        print_r($keys);
-//        echo "</pre>", exit;
-
-        //Conteudo da view
         return str_replace($keys, array_values($vars), self::getContentView($view));
     }
 }
