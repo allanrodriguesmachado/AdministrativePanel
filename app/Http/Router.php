@@ -15,7 +15,7 @@ class Router
 
     public function __construct(string $url)
     {
-        $this->request = new Request();
+        $this->request = new Request($this);
         $this->url = $url;
         $this->setPrefix();
     }
@@ -115,5 +115,10 @@ class Router
         } catch (Exception $exception) {
             return new Response($exception->getCode(), $exception->getMessage());
         }
+    }
+
+    public function getCurrentUrl()
+    {
+        return $this->url.$this->getUri();
     }
 }

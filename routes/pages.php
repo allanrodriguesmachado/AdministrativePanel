@@ -16,3 +16,18 @@ $obRouter->get('/consultar_produto',
             return new Response(200, Pages\ConsultScheduling::getConsultScheduling());
         }
     ]);
+
+
+$obRouter->get('/depoimentos',
+    [
+        function ($request) {
+            return new Response(200, Pages\Testimony::getTestimonies($request));
+        }
+    ]);
+
+$obRouter->post('/depoimentos',
+    [
+        function ($request) {
+            return new Response(200, Pages\Testimony::insertTestimony($request));
+        }
+    ]);

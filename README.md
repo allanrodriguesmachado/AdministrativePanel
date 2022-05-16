@@ -1,6 +1,6 @@
 # Administrative Panel
 
 
-Administrative Panel made with Laminas PHP framework
+Administrative Panel
 
 - Version 1.0.0
