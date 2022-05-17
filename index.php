@@ -1,13 +1,11 @@
 <?php
 
-require __DIR__ . '/includes/app.php';
+require  __DIR__ . '/vendor/autoload.php';
 
+use \App\Entity\Vaga;
 
+$vagas= Vaga::getVagas();
 
-use App\Http\Router;
-
-$obRouter = new Router(URL);
-
-include __DIR__ . '/routes/pages.php';
-
-$obRouter->run()->sendResponse();
+include __DIR__ . '/includes/header.php';
+include __DIR__ . '/includes/listagem.php';
+//include __DIR__ . '/includes/footer.php';
